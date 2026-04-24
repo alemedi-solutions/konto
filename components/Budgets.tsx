@@ -42,7 +42,7 @@ export function Budgets({ onGo }: { onGo: (s: string) => void }) {
             <span style={{ color: 'var(--text-m)', fontSize: 24, fontWeight: 600, letterSpacing: '-0.5px' }}>,{cents}</span>
           </div>
           <div style={{ fontSize: 12, color: 'var(--text-m)', marginTop: 6 }}>De €{totalBudget} · {Math.round(pctTotal)}% usado</div>
-          <Progress pct={pctTotal} height={10} style={{ marginTop: 14 } as any}/>
+          <div style={{ marginTop: 14 }}><Progress pct={pctTotal} height={10}/></div>
         </HeroCard>
 
         <SectionTitle title="Por categoría"/>
