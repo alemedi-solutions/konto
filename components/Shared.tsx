@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
+import React, { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { useStore } from '@/lib/store';
 import type { Transaction } from '@/lib/types';
 import { formatDate, fmtAmt } from '@/lib/helpers';
@@ -57,8 +57,8 @@ export function Avatar({ initials, size = 40, fontSize = 14 }: { initials: strin
 
 // ─── CARD ────────────────────────────────────────────────────────────────────
 
-export function Card({ children, style: s = {} }: { children: ReactNode; style?: CSSProperties }) {
-  return <div className="card" style={s}>{children}</div>;
+export function Card({ children, style: s = {}, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
+  return <div className="card" style={s} {...rest}>{children}</div>;
 }
 
 // ─── HERO CARD ───────────────────────────────────────────────────────────────
