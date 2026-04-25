@@ -118,8 +118,11 @@ export function TxRow({ tx, onClick, last }: { tx: Transaction; onClick: () => v
             <span style={{ fontSize: 11, color: 'var(--text-f)', fontWeight: 500 }}>{formatDate(tx.date)}</span>
           </div>
         </div>
-        <div className="dn" style={{ fontSize: 15, fontWeight: 700, color: tx.amt > 0 ? 'var(--green)' : 'var(--text)', whiteSpace: 'nowrap' }}>
-          {sign}{int},{cents} €
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
+          <div className="dn" style={{ fontSize: 15, fontWeight: 700, color: tx.amt > 0 ? 'var(--green)' : 'var(--text)', whiteSpace: 'nowrap' }}>
+            {sign}{int},{cents} €
+          </div>
+          {tx.recurring && <span style={{ fontSize: 10, color: 'var(--text-f)', fontWeight: 600, letterSpacing: 0.3 }}>↻ mensual</span>}
         </div>
       </div>
     </div>

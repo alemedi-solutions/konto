@@ -1,20 +1,29 @@
 'use client';
 
+import { useState } from 'react';
 import { useStore } from '@/lib/store';
-import { sumIncome, sumSpent, fmtAmt } from '@/lib/helpers';
+import { sumIncome, sumSpent, fmtAmt, monthKey } from '@/lib/helpers';
 import { Avatar, HeroCard, Card, SectionTitle, TxRow } from './Shared';
 import { TabBar } from './TabBar';
 
 interface Props { onGo: (s: string) => void; onAdd: (k: string) => void; onOpenTx: (t: any) => void; }
 
+function offsetDate(base: Date, months: number): Date {
+  return new Date(base.getFullYear(), base.getMonth() + months, 1);
+}
+
 export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
   const { profile, gradMap, grad } = useStore();
-  const txs = useStore().useMonthTx();
+  const [monthOffset, setMonthOffset] = useState(0);
+  const viewDate = offsetDate(new Date(), monthOffset);
+  const mk = monthKey(viewDate);
+  const txs = useStore().useMonthTx(mk);
   const income = sumIncome(txs);
   const spent = sumSpent(txs);
   const balance = income - spent;
   const { int, cents } = fmtAmt(balance);
-  const monthName = new Date().toLocaleDateString('es-ES', { month: 'long' });
+  const isCurrentMonth = monthOffset === 0;
+  const monthName = viewDate.toLocaleDateString('es-ES', { month: 'long' });
 
   const actions = [
     { label: 'Añadir',  primary: true, action: () => onAdd('gasto'),    svg: <path d="M12 5v14M5 12h14" strokeLinecap="round"/> },
@@ -27,9 +36,19 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
     <div className="screen">
       <div className="hdr">
         <img src="/konto.png" alt="Konto" style={{ height: 48, width: 48, borderRadius: 12 }} />
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 12px', borderRadius: 999, background: 'var(--surface)', border: '1px solid var(--border)' }}>
-          <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-s)', textTransform: 'capitalize' }}>{new Date().toLocaleDateString('es-ES', { month: 'long' })}</span>
-          <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-m)' }}>{new Date().getFullYear()}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 2, padding: '6px 4px', borderRadius: 999, background: 'var(--surface)', border: '1px solid var(--border)' }}>
+          <button onClick={() => setMonthOffset(v => v - 1)}
+            style={{ width: 30, height: 30, borderRadius: 999, background: 'transparent', border: 'none', color: 'var(--text-m)', fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+            ‹
+          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '0 4px' }}>
+            <span style={{ fontSize: 14, fontWeight: 600, color: isCurrentMonth ? 'var(--text-s)' : 'var(--text-m)', textTransform: 'capitalize', minWidth: 52, textAlign: 'center' }}>{monthName}</span>
+            <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-f)' }}>{viewDate.getFullYear()}</span>
+          </div>
+          <button onClick={() => setMonthOffset(v => Math.min(v + 1, 0))}
+            style={{ width: 30, height: 30, borderRadius: 999, background: 'transparent', border: 'none', color: monthOffset >= 0 ? 'var(--border-s)' : 'var(--text-m)', fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: monthOffset >= 0 ? 'default' : 'pointer' }}>
+            ›
+          </button>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }} onClick={() => onGo('me')}>
           <div style={{ textAlign: 'right' }}>
@@ -92,8 +111,8 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
         {txs.length === 0 ? (
           <Card style={{ textAlign: 'center', padding: '28px 16px' }}>
             <div style={{ fontSize: 36 }}>✨</div>
-            <div style={{ fontSize: 15, fontWeight: 600, marginTop: 6, color: 'var(--text)' }}>Empieza a registrar</div>
-            <div style={{ fontSize: 12, color: 'var(--text-m)', marginTop: 4 }}>Toca + para añadir el primero</div>
+            <div style={{ fontSize: 15, fontWeight: 600, marginTop: 6, color: 'var(--text)' }}>Sin movimientos</div>
+            <div style={{ fontSize: 12, color: 'var(--text-m)', marginTop: 4 }}>No hay registros en {monthName}</div>
           </Card>
         ) : (
           <Card style={{ padding: '4px 16px' }}>

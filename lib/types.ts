@@ -14,6 +14,7 @@ export interface Transaction {
   catId: string;
   amt: number;
   date: string;
+  recurring?: boolean;
 }
 
 export interface Profile {

@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  createContext, useContext, useMemo, useState, useCallback,
+  createContext, useContext, useMemo, useState, useEffect,
   type ReactNode,
 } from 'react';
 import type { Category, Transaction, GradientKey } from './types';
@@ -36,6 +36,23 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const profile = { name: 'Alejandro Mediavilla', email: 'alejandromediavilla@ebroker.es', initials: 'AM' };
   const [darkMode, setDarkMode] = useState(false);
   const [grad, setGradState] = useState<GradientKey>('ocean');
+
+  useEffect(() => {
+    const currentMk = monthKey(new Date());
+    setTx(prev => {
+      const toAdd: Transaction[] = [];
+      const recurringFromPast = prev.filter(t => t.recurring && monthKey(t.date) !== currentMk);
+      for (const t of recurringFromPast) {
+        const exists = prev.some(x => x.name === t.name && x.catId === t.catId && x.amt === t.amt && monthKey(x.date) === currentMk);
+        if (!exists) {
+          const day = Math.min(new Date(t.date).getDate(), new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate());
+          const newDate = new Date(new Date().getFullYear(), new Date().getMonth(), day, 12, 0, 0).toISOString();
+          toAdd.push({ ...t, id: `rec-${t.id}-${currentMk}`, date: newDate });
+        }
+      }
+      return toAdd.length > 0 ? [...prev, ...toAdd] : prev;
+    });
+  }, []);
 
   const api = useMemo<StoreValue>(() => ({
     cats, tx, profile, darkMode, grad,

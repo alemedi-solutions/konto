@@ -20,6 +20,7 @@ export function AddSheet({ defaultKind, existing, onClose }: Props) {
   const [catId, setCatId] = useState(existing?.catId ?? catList[0]?.id ?? '');
   const [name, setName] = useState(existing?.name ?? '');
   const [date, setDate] = useState(existing ? existing.date.slice(0, 10) : new Date().toISOString().slice(0, 10));
+  const [recurring, setRecurring] = useState(existing?.recurring ?? false);
 
   useEffect(() => {
     const list = cats.filter(c => c.kind === kind);
@@ -39,6 +40,7 @@ export function AddSheet({ defaultKind, existing, onClose }: Props) {
       name: name || cats.find(c => c.id === catId)?.name || 'Movimiento',
       catId, amt: isGasto ? -num : num,
       date: new Date(date + 'T12:00:00').toISOString(),
+      recurring,
     };
     if (existing) updateTx(existing.id, payload); else addTx(payload);
     onClose();
@@ -79,6 +81,20 @@ export function AddSheet({ defaultKind, existing, onClose }: Props) {
 
         <input type="date" value={date} onChange={e => setDate(e.target.value)}
           style={{ width: '100%', padding: '12px 14px', borderRadius: 12, background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--text)', fontSize: 14, marginBottom: 10, colorScheme: 'light dark' }}/>
+
+        <div onClick={() => setRecurring(v => !v)}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', borderRadius: 12, background: 'var(--surface2)', border: `1px solid ${recurring ? 'color-mix(in srgb, var(--grad) 40%, transparent)' : 'var(--border)'}`, marginBottom: 10, cursor: 'pointer', transition: 'border-color 0.2s' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ fontSize: 16 }}>↻</span>
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>Repetir cada mes</div>
+              <div style={{ fontSize: 11, color: 'var(--text-m)', marginTop: 1 }}>Se añadirá automáticamente</div>
+            </div>
+          </div>
+          <div className="toggle" style={{ background: recurring ? 'var(--grad)' : 'var(--surface3)' }}>
+            <div className="toggle-thumb" style={{ left: recurring ? 21 : 3 }}/>
+          </div>
+        </div>
 
         <div className="chip-row" style={{ margin: '4px -4px 10px' }}>
           {catList.map(c => (
