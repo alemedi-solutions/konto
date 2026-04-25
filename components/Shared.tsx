@@ -5,6 +5,18 @@ import { useStore } from '@/lib/store';
 import type { Transaction } from '@/lib/types';
 import { formatDate, fmtAmt } from '@/lib/helpers';
 
+// ─── CAT ICON ────────────────────────────────────────────────────────────────
+
+export function CatIcon({ ico, logo, color, size = 42 }: { ico: string; logo?: string; color: string; size?: number }) {
+  return (
+    <div style={{ width: size, height: size, borderRadius: size * 0.33, background: color, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+      {logo
+        ? <img src={logo} alt={ico} style={{ width: size * 0.52, height: size * 0.52, filter: 'brightness(0) invert(1)' }} />
+        : <span style={{ fontSize: size * 0.43 }}>{ico}</span>}
+    </div>
+  );
+}
+
 // ─── HDR BTN ─────────────────────────────────────────────────────────────────
 
 export function HdrBtn({ onClick, children, style: s = {} }: { onClick?: () => void; children: ReactNode; style?: CSSProperties }) {
@@ -96,7 +108,7 @@ export function TxRow({ tx, onClick, last }: { tx: Transaction; onClick: () => v
         style={{ transform: `translateX(-${offset}px)`, transition: offset === 0 || offset === SNAP ? 'transform 0.2s ease' : 'none', background: 'var(--surface)' }}
         onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
         onClick={offset > 0 ? () => setOffset(0) : onClick}>
-        <div className="tx-ico" style={{ background: c.color }}>{c.ico}</div>
+        <CatIcon ico={c.ico} logo={c.logo} color={c.color} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 15, fontWeight: 600, lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--text)' }}>
             {tx.name || c.name}

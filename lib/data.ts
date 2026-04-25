@@ -8,7 +8,7 @@ export const DEFAULT_CATS: Category[] = [
   { id: 'ocio',  name: 'Ocio',         color: '#ff4d8f', ico: '🎬', kind: 'gasto', budget: 100 },
   { id: 'salud', name: 'Salud',        color: '#3ecf8e', ico: '💊', kind: 'gasto', budget: 80  },
   { id: 'subs',  name: 'Suscripciones',color: '#e50914', ico: '📺', kind: 'gasto', budget: 50  },
-  { id: 'nflx',  name: 'Netflix',      color: '#E50914', ico: '🎬', kind: 'gasto', budget: 13  },
+  { id: 'nflx',  name: 'Netflix',      color: '#E50914', ico: '🎬', logo: '/brands/netflix.svg', kind: 'gasto', budget: 13  },
   { id: 'dsnp',  name: 'Disney+',      color: '#113CCF', ico: '🏰', kind: 'gasto', budget: 9   },
   { id: 'spfy',  name: 'Spotify',      color: '#1DB954', ico: '🎧', kind: 'gasto', budget: 10  },
   { id: 'peph',  name: 'Pepephone',    color: '#FF1744', ico: '🐼', kind: 'gasto', budget: 20  },

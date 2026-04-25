@@ -5,6 +5,7 @@ export interface Category {
   color: string;
   kind: 'gasto' | 'ingreso';
   budget?: number;
+  logo?: string;
 }
 
 export interface Transaction {

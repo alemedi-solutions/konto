@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useStore } from '@/lib/store';
 import { sumSpent, fmtAmt } from '@/lib/helpers';
-import { HdrBtn, HeroCard, Card, SectionTitle, Progress } from './Shared';
+import { HdrBtn, HeroCard, Card, SectionTitle, Progress, CatIcon } from './Shared';
 import { TabBar } from './TabBar';
 
 export function Budgets({ onGo }: { onGo: (s: string) => void }) {
@@ -53,7 +53,7 @@ export function Budgets({ onGo }: { onGo: (s: string) => void }) {
             <Card key={c.id} style={{ marginBottom: 10, cursor: 'pointer' }}
               onClick={() => { setEditing(c.id); setVal(String(c.budget ?? '')); }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <div style={{ width: 40, height: 40, borderRadius: 14, background: c.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0, boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>{c.ico}</div>
+                <CatIcon ico={c.ico} logo={c.logo} color={c.color} size={40} />
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
                     <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--text)' }}>{c.name}</span>
