@@ -8,7 +8,7 @@
   --text: #ffffff; --text-s: rgba(255,255,255,0.75); --text-m: rgba(255,255,255,0.5); --text-f: rgba(255,255,255,0.32);
   --accent: #a78bfa; --accent2: #60a5fa; --accent3: #f472b6;
   --green: #22d3a5; --red: #ff5a6e; --yellow: #fbbf24;
-  --grad: linear-gradient(135deg, #a78bfa 0%, #c084e8 55%, #f9a8d4 100%);
+  --grad: #a78bfa;
   --tab-bg: rgba(17,17,24,0.98);
   --tab-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 6px rgba(11,11,16,0.4);
 }

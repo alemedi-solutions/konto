@@ -26,10 +26,10 @@ export function Profile({ onGo, onReset }: { onGo: (s: string) => void; onReset:
   };
 
   const gradients: { id: GradientKey; g: string }[] = [
-    { id: 'violet', g: 'linear-gradient(135deg,#a78bfa,#f9a8d4)' },
-    { id: 'sunset', g: 'linear-gradient(135deg,#fbbf77,#c4b5fd)' },
-    { id: 'ocean',  g: 'linear-gradient(135deg,#7dd3fc,#c4b5fd)' },
-    { id: 'mint',   g: 'linear-gradient(135deg,#6ee7c7,#a5b4fc)' },
+    { id: 'violet', g: '#a78bfa' },
+    { id: 'sunset', g: '#fb923c' },
+    { id: 'ocean',  g: '#38bdf8' },
+    { id: 'mint',   g: '#34d399' },
   ];
 
   const rows = [

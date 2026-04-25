@@ -30,10 +30,10 @@ export const SEED_TX: Transaction[] = [
 ];
 
 export const GRAD_MAP: Record<string, string> = {
-  violet: 'linear-gradient(135deg, #a78bfa 0%, #c084e8 55%, #f9a8d4 100%)',
-  sunset: 'linear-gradient(135deg, #fbbf77 0%, #f9a8d4 55%, #c4b5fd 100%)',
-  ocean:  'linear-gradient(135deg, #7dd3fc 0%, #a5b4fc 55%, #c4b5fd 100%)',
-  mint:   'linear-gradient(135deg, #6ee7c7 0%, #7dd3fc 55%, #a5b4fc 100%)',
+  violet: '#a78bfa',
+  sunset: '#fb923c',
+  ocean:  '#38bdf8',
+  mint:   '#34d399',
 };
 
 export const PALETTE = [
