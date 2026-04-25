@@ -28,8 +28,8 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
       <div className="hdr">
         <img src="/konto.png" alt="Konto" style={{ height: 48, width: 48, borderRadius: 12 }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 12px', borderRadius: 999, background: 'var(--surface)', border: '1px solid var(--border)' }}>
-          <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-m)', textTransform: 'capitalize' }}>{new Date().toLocaleDateString('es-ES', { month: 'long' })}</span>
-          <span style={{ fontSize: 11, fontWeight: 500, color: 'var(--text-f)' }}>{new Date().getFullYear()}</span>
+          <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-s)', textTransform: 'capitalize' }}>{new Date().toLocaleDateString('es-ES', { month: 'long' })}</span>
+          <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-m)' }}>{new Date().getFullYear()}</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }} onClick={() => onGo('me')}>
           <div style={{ textAlign: 'right' }}>
