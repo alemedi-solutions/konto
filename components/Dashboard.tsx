@@ -2,7 +2,7 @@
 
 import { useStore } from '@/lib/store';
 import { sumIncome, sumSpent, fmtAmt } from '@/lib/helpers';
-import { HdrBtn, Avatar, HeroCard, Card, SectionTitle, TxRow } from './Shared';
+import { Avatar, HeroCard, Card, SectionTitle, TxRow } from './Shared';
 import { TabBar } from './TabBar';
 
 interface Props { onGo: (s: string) => void; onAdd: (k: string) => void; onOpenTx: (t: any) => void; }
@@ -26,20 +26,15 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
   return (
     <div className="screen">
       <div className="hdr">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <Avatar initials={profile.initials}/>
-          <div>
-            <div style={{ fontSize: 11, color: 'var(--text-m)', fontWeight: 500 }}>Hola,</div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)' }}>{profile.name.split(' ')[0]} 👋</div>
-          </div>
+        <div style={{ fontFamily: 'Instrument Serif, serif', fontSize: 28, fontStyle: 'italic', fontWeight: 400, color: 'var(--text)', letterSpacing: '-0.5px' }}>
+          Konto
         </div>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <HdrBtn onClick={() => onGo('tx')}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5" strokeLinecap="round"/></svg>
-          </HdrBtn>
-          <HdrBtn onClick={() => onGo('me')}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 2h16l-2-2z"/></svg>
-          </HdrBtn>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }} onClick={() => onGo('me')}>
+          <div style={{ textAlign: 'right' }}>
+            <div style={{ fontSize: 11, color: 'var(--text-m)', fontWeight: 500 }}>Hola,</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)' }}>{profile.name.split(' ')[0]}</div>
+          </div>
+          <Avatar initials={profile.initials}/>
         </div>
       </div>
 
@@ -92,13 +87,13 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
         </HeroCard>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 14 }}>
-          <div className="stat-card green">
-            <div style={{ fontSize: 11, color: 'var(--text-m)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.6 }}>Ingresos</div>
-            <div className="dn" style={{ fontSize: 22, fontWeight: 700, marginTop: 6, color: 'var(--green)' }}>+€{income.toFixed(0)}</div>
+          <div className="stat-card">
+            <div className="stat-tag green">↑ Ingresos</div>
+            <div className="dn" style={{ fontSize: 22, fontWeight: 700, color: 'var(--green)' }}>+€{income.toFixed(0)}</div>
           </div>
-          <div className="stat-card red">
-            <div style={{ fontSize: 11, color: 'var(--text-m)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.6 }}>Gastos</div>
-            <div className="dn" style={{ fontSize: 22, fontWeight: 700, marginTop: 6, color: 'var(--text)' }}>−€{spent.toFixed(0)}</div>
+          <div className="stat-card">
+            <div className="stat-tag red">↓ Gastos</div>
+            <div className="dn" style={{ fontSize: 22, fontWeight: 700, color: 'var(--red)' }}>−€{spent.toFixed(0)}</div>
           </div>
         </div>
 

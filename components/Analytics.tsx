@@ -56,7 +56,7 @@ export function Analytics({ onGo }: { onGo: (s: string) => void }) {
                     height: Math.max(3, (m.eur / maxM * 88)) + 'px',
                     borderRadius: 8,
                     background: m.current ? 'var(--grad)' : 'rgba(255,255,255,0.1)',
-                    boxShadow: m.current ? '0 4px 14px rgba(167,139,250,0.4)' : 'none',
+                    boxShadow: m.current ? '0 4px 14px color-mix(in srgb, var(--grad) 40%, transparent)' : 'none',
                     transition: 'height .4s ease',
                   }}/>
                 </div>

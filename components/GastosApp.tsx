@@ -13,7 +13,7 @@ import { Profile } from './Profile';
 import { AddSheet } from './AddSheet';
 
 function AppInner() {
-  const { darkMode, reset } = useStore();
+  const { darkMode, reset, gradMap, grad } = useStore();
   const [screen, setScreen] = useState<Screen>('home');
   const [sheet, setSheet] = useState<'gasto' | 'ingreso' | null>(null);
   const [editTx, setEditTx] = useState<Transaction | null>(null);
@@ -33,7 +33,7 @@ function AppInner() {
   };
 
   return (
-    <div className={darkMode ? '' : 'light'} style={{ width: '100%', height: '100%', position: 'relative' }}>
+    <div className={darkMode ? '' : 'light'} style={{ width: '100%', height: '100%', position: 'relative', ['--grad' as string]: gradMap[grad] }}>
       {screens[screen]}
       {sheet && <AddSheet defaultKind={sheet} existing={editTx} onClose={closeSheet}/>}
     </div>

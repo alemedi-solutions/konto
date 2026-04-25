@@ -35,7 +35,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [tx, setTx] = useState<Transaction[]>(SEED_TX);
   const profile = { name: 'Marta García', email: 'marta@correo.es', initials: 'MG' };
   const [darkMode, setDarkMode] = useState(true);
-  const [grad, setGradState] = useState<GradientKey>('violet');
+  const [grad, setGradState] = useState<GradientKey>('ocean');
 
   const api = useMemo<StoreValue>(() => ({
     cats, tx, profile, darkMode, grad,
