@@ -86,9 +86,11 @@ export function TxRow({ tx, onClick, last }: { tx: Transaction; onClick: () => v
     <div style={{ position: 'relative', overflow: 'hidden', borderBottom: last ? 'none' : '1px solid var(--border)' }}>
       <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: SNAP, background: 'var(--red)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         onClick={() => deleteTx(tx.id)}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
-          <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
+            <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
       </div>
       <div className="tx-row"
         style={{ transform: `translateX(-${offset}px)`, transition: offset === 0 || offset === SNAP ? 'transform 0.2s ease' : 'none', background: 'var(--surface)' }}
@@ -105,7 +107,7 @@ export function TxRow({ tx, onClick, last }: { tx: Transaction; onClick: () => v
           </div>
         </div>
         <div className="dn" style={{ fontSize: 15, fontWeight: 700, color: tx.amt > 0 ? 'var(--green)' : 'var(--text)', whiteSpace: 'nowrap' }}>
-          {sign}{int},{cents}€
+          {sign}{int},{cents} €
         </div>
       </div>
     </div>

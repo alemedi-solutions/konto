@@ -69,7 +69,7 @@ export function AddSheet({ defaultKind, existing, onClose }: Props) {
 
         <div style={{ textAlign: 'center', padding: '14px 0' }}>
           <div className="dn" style={{ fontSize: 54, fontWeight: 700, letterSpacing: '-2px', lineHeight: 1, color: isGasto ? 'var(--text)' : 'var(--green)' }}>
-            {amount}<span style={{ color: 'var(--text-m)', fontWeight: 500 }}>€</span>
+            {amount}<span style={{ color: 'var(--text-m)', fontWeight: 500, marginLeft: 4 }}>€</span>
           </div>
         </div>
 
