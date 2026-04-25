@@ -27,6 +27,48 @@ export function Analytics({ onGo }: { onGo: (s: string) => void }) {
   }
   const maxM = Math.max(1, ...months.map(m => m.eur));
 
+  const now = new Date();
+  const dayOfMonth = now.getDate();
+  const dailyAvg = dayOfMonth > 0 ? spent / dayOfMonth : 0;
+
+  const prevMk = monthKey(new Date(now.getFullYear(), now.getMonth() - 1, 1));
+  const prevSpent = tx.filter(t => t.amt < 0 && monthKey(t.date) === prevMk).reduce((s, t) => s + Math.abs(t.amt), 0);
+  const momDiff = prevSpent > 0 ? ((spent - prevSpent) / prevSpent) * 100 : null;
+  const prevMonthName = new Date(now.getFullYear(), now.getMonth() - 1, 1).toLocaleDateString('es-ES', { month: 'long' });
+
+  const subIds = ['nflx','dsnp','spfy','peph','amzn','hbo','subs'];
+  const subSpent = txs.filter(t => t.amt < 0 && subIds.includes(t.catId)).reduce((s, t) => s + Math.abs(t.amt), 0);
+
+  const topCat = catRows[0] ?? null;
+
+  const insights: { ico: string; label: string; value: string; sub?: string; positive?: boolean; negative?: boolean }[] = [
+    ...(momDiff !== null ? [{
+      ico: momDiff <= 0 ? '📉' : '📈',
+      label: `vs ${prevMonthName}`,
+      value: `${momDiff > 0 ? '+' : ''}${momDiff.toFixed(0)}%`,
+      positive: momDiff <= 0,
+      negative: momDiff > 10,
+    }] : []),
+    {
+      ico: '📅',
+      label: 'Media diaria',
+      value: `${dailyAvg.toFixed(0)} €`,
+      sub: `${dayOfMonth} días`,
+    },
+    ...(topCat ? [{
+      ico: topCat.ico,
+      label: 'Mayor gasto',
+      value: `${topCat.eur.toFixed(0)} €`,
+      sub: topCat.name,
+    }] : []),
+    ...(subSpent > 0 ? [{
+      ico: '📺',
+      label: 'Suscripciones',
+      value: `${subSpent.toFixed(0)} €`,
+      sub: 'este mes',
+    }] : []),
+  ];
+
   return (
     <div className="screen">
       <div className="hdr">
@@ -65,6 +107,18 @@ export function Analytics({ onGo }: { onGo: (s: string) => void }) {
             ))}
           </div>
         </HeroCard>
+
+        <SectionTitle title="Insights"/>
+        <div style={{ display: 'flex', gap: 10, overflowX: 'auto', padding: '0 0 8px', margin: '0 -4px' }}>
+          {insights.map((ins, i) => (
+            <div key={i} style={{ flexShrink: 0, background: 'var(--surface)', border: `1px solid ${ins.positive ? 'rgba(34,211,165,0.2)' : ins.negative ? 'rgba(255,90,110,0.2)' : 'var(--border)'}`, borderRadius: 18, padding: '12px 16px', minWidth: 120 }}>
+              <div style={{ fontSize: 22, marginBottom: 8 }}>{ins.ico}</div>
+              <div style={{ fontSize: 11, color: 'var(--text-f)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 3 }}>{ins.label}</div>
+              <div className="dn" style={{ fontSize: 20, fontWeight: 700, color: ins.positive ? 'var(--green)' : ins.negative ? 'var(--red)' : 'var(--text)', letterSpacing: '-0.5px' }}>{ins.value}</div>
+              {ins.sub && <div style={{ fontSize: 11, color: 'var(--text-m)', marginTop: 2 }}>{ins.sub}</div>}
+            </div>
+          ))}
+        </div>
 
         <SectionTitle title="Por categoría"/>
         {catRows.length === 0 ? (
