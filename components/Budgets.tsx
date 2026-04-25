@@ -36,11 +36,11 @@ export function Budgets({ onGo }: { onGo: (s: string) => void }) {
             Te queda
           </div>
           <div className="hero-amount" style={{ justifyContent: 'center' }}>
-            <span style={{ fontSize: 28, fontWeight: 500, color: 'var(--text-m)', marginTop: 6, alignSelf: 'flex-start' }}>€</span>
             <span style={{ color: 'var(--text)' }}>{int}</span>
             <span style={{ color: 'var(--text-m)', fontSize: 24, fontWeight: 600, letterSpacing: '-0.5px' }}>,{cents}</span>
+            <span style={{ fontSize: 28, fontWeight: 500, color: 'var(--text-m)', marginBottom: 6, alignSelf: 'flex-end' }}>€</span>
           </div>
-          <div style={{ fontSize: 12, color: 'var(--text-m)', marginTop: 6 }}>De €{totalBudget} · {Math.round(pctTotal)}% usado</div>
+          <div style={{ fontSize: 12, color: 'var(--text-m)', marginTop: 6 }}>De {totalBudget}€ · {Math.round(pctTotal)}% usado</div>
           <div style={{ marginTop: 14 }}><Progress pct={pctTotal} height={10}/></div>
         </HeroCard>
 
@@ -57,7 +57,7 @@ export function Budgets({ onGo }: { onGo: (s: string) => void }) {
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
                     <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--text)' }}>{c.name}</span>
-                    <span className="dn" style={{ fontSize: 13, fontWeight: 700, color: over ? 'var(--red)' : 'var(--text)' }}>€{used.toFixed(0)} / €{c.budget}</span>
+                    <span className="dn" style={{ fontSize: 13, fontWeight: 700, color: over ? 'var(--red)' : 'var(--text)' }}>{used.toFixed(0)}€ / {c.budget}€</span>
                   </div>
                   <Progress pct={pct} color={over ? 'var(--red)' : c.color}/>
                 </div>
@@ -77,7 +77,7 @@ export function Budgets({ onGo }: { onGo: (s: string) => void }) {
             </div>
             <div style={{ textAlign: 'center', marginBottom: 14 }}>
               <div className="dn" style={{ fontSize: 44, fontWeight: 700, letterSpacing: '-1.5px', color: 'var(--text)' }}>
-                <span style={{ color: 'var(--text-m)', fontWeight: 500 }}>€</span>{val || '0'}
+                {val || '0'}<span style={{ color: 'var(--text-m)', fontWeight: 500 }}>€</span>
               </div>
             </div>
             <input type="number" inputMode="decimal" value={val} onChange={e => setVal(e.target.value)}

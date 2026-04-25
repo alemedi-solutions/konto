@@ -166,7 +166,7 @@ export function Categories({ onGo }: { onGo: (s: string) => void }) {
                 </div>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--text)' }}>{c.name}</div>
-                  {c.budget && <div style={{ fontSize: 12, color: 'var(--text-m)', marginTop: 1 }}>Presupuesto: €{c.budget}/mes</div>}
+                  {c.budget && <div style={{ fontSize: 12, color: 'var(--text-m)', marginTop: 1 }}>Presupuesto: {c.budget}€/mes</div>}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <div style={{ width: 10, height: 10, borderRadius: '50%', background: c.color, boxShadow: `0 0 6px ${c.color}` }}/>

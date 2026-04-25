@@ -1,6 +1,6 @@
 'use client';
 
-import React, { type CSSProperties, type ReactNode } from 'react';
+import React, { useState, useRef, type CSSProperties, type ReactNode } from 'react';
 import { useStore } from '@/lib/store';
 import type { Transaction } from '@/lib/types';
 import { formatDate, fmtAmt } from '@/lib/helpers';
@@ -66,24 +66,47 @@ export function Progress({ pct, color, height = 6 }: { pct: number; color?: stri
 
 // ─── TX ROW ──────────────────────────────────────────────────────────────────
 
+const SNAP = 72;
+
 export function TxRow({ tx, onClick, last }: { tx: Transaction; onClick: () => void; last: boolean }) {
-  const { getCat } = useStore();
+  const { getCat, deleteTx } = useStore();
   const c = getCat(tx.catId);
   const { int, cents, sign } = fmtAmt(tx.amt);
+  const [offset, setOffset] = useState(0);
+  const startX = useRef(0);
+
+  const onTouchStart = (e: React.TouchEvent) => { startX.current = e.touches[0].clientX; };
+  const onTouchMove = (e: React.TouchEvent) => {
+    const dx = startX.current - e.touches[0].clientX;
+    setOffset(Math.max(0, Math.min(dx, SNAP)));
+  };
+  const onTouchEnd = () => setOffset(v => v > SNAP / 2 ? SNAP : 0);
+
   return (
-    <div className="tx-row" onClick={onClick}
-      style={{ borderBottom: last ? 'none' : '1px solid var(--border)' }}>
-      <div className="tx-ico" style={{ background: c.color }}>{c.ico}</div>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 15, fontWeight: 600, lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--text)' }}>
-          {tx.name || c.name}
-        </div>
-        <div style={{ fontSize: 12, color: 'var(--text-m)', marginTop: 2 }}>
-          {c.name} · {formatDate(tx.date)}
-        </div>
+    <div style={{ position: 'relative', overflow: 'hidden', borderBottom: last ? 'none' : '1px solid var(--border)' }}>
+      <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: SNAP, background: 'var(--red)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        onClick={() => deleteTx(tx.id)}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
+          <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
       </div>
-      <div className="dn" style={{ fontSize: 15, fontWeight: 700, color: tx.amt > 0 ? 'var(--green)' : 'var(--text)', whiteSpace: 'nowrap' }}>
-        {sign}€{int},{cents}
+      <div className="tx-row"
+        style={{ transform: `translateX(-${offset}px)`, transition: offset === 0 || offset === SNAP ? 'transform 0.2s ease' : 'none', background: 'var(--surface)' }}
+        onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
+        onClick={offset > 0 ? () => setOffset(0) : onClick}>
+        <div className="tx-ico" style={{ background: c.color }}>{c.ico}</div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 15, fontWeight: 600, lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--text)' }}>
+            {tx.name || c.name}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 3 }}>
+            <span style={{ fontSize: 12, color: 'var(--text-m)' }}>{c.name}</span>
+            <span style={{ fontSize: 11, color: 'var(--text-f)', fontWeight: 500 }}>{formatDate(tx.date)}</span>
+          </div>
+        </div>
+        <div className="dn" style={{ fontSize: 15, fontWeight: 700, color: tx.amt > 0 ? 'var(--green)' : 'var(--text)', whiteSpace: 'nowrap' }}>
+          {sign}{int},{cents}€
+        </div>
       </div>
     </div>
   );

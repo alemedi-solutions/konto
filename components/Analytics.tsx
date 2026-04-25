@@ -43,9 +43,9 @@ export function Analytics({ onGo }: { onGo: (s: string) => void }) {
             Gastado · {new Date().toLocaleDateString('es-ES', { month: 'long' })}
           </div>
           <div className="hero-amount">
-            <span style={{ fontSize: 28, fontWeight: 500, color: 'var(--text-m)', marginTop: 6, alignSelf: 'flex-start' }}>€</span>
             <span style={{ color: 'var(--text)' }}>{int}</span>
             <span style={{ color: 'var(--text-m)', fontSize: 24, fontWeight: 600, letterSpacing: '-0.5px' }}>,{cents}</span>
+            <span style={{ fontSize: 28, fontWeight: 500, color: 'var(--text-m)', marginBottom: 6, alignSelf: 'flex-end' }}>€</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8, height: 100, marginTop: 20 }}>
             {months.map(m => (
@@ -79,7 +79,7 @@ export function Analytics({ onGo }: { onGo: (s: string) => void }) {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontWeight: 600, marginBottom: 6 }}>
                     <span style={{ color: 'var(--text)' }}>{c.name}</span>
-                    <span className="dn" style={{ color: 'var(--text)' }}>€{c.eur.toFixed(2)}</span>
+                    <span className="dn" style={{ color: 'var(--text)' }}>{c.eur.toFixed(2)}€</span>
                   </div>
                   <Progress pct={(c.eur / (spent || 1)) * 100} color={c.color}/>
                 </div>

@@ -10,8 +10,8 @@ import { TabBar } from './TabBar';
 interface Props { onGo: (s: string) => void; onAdd: (k: string) => void; onOpenTx: (t: Transaction) => void; }
 
 export function Transactions({ onGo, onAdd, onOpenTx }: Props) {
-  const { cats } = useStore();
-  const txs = useStore().useMonthTx();
+  const { cats, tx: allTx } = useStore();
+  const txs = [...allTx].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   const [filter, setFilter] = useState<'todos' | 'ingresos' | 'gastos'>('todos');
   const [catFilter, setCatFilter] = useState('all');
   const [q, setQ] = useState('');

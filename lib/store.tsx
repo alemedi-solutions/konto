@@ -33,8 +33,8 @@ const StoreCtx = createContext<StoreValue | null>(null);
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [cats, setCats] = useState<Category[]>(DEFAULT_CATS);
   const [tx, setTx] = useState<Transaction[]>(SEED_TX);
-  const profile = { name: 'Marta García', email: 'marta@correo.es', initials: 'MG' };
-  const [darkMode, setDarkMode] = useState(true);
+  const profile = { name: 'Alejandro Mediavilla', email: 'alejandromediavilla@ebroker.es', initials: 'AM' };
+  const [darkMode, setDarkMode] = useState(false);
   const [grad, setGradState] = useState<GradientKey>('ocean');
 
   const api = useMemo<StoreValue>(() => ({

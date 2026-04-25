@@ -51,23 +51,23 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
               </div>
             </div>
             <div className={`delta${balance < 0 ? ' neg' : ''}`}>
-              {balance >= 0 ? '↑' : '↓'} €{Math.abs(balance).toFixed(0)}
+              {balance >= 0 ? '↑' : '↓'} {Math.abs(balance).toFixed(0)}€
             </div>
           </div>
           <div className="hero-amount">
-            <span style={{ fontSize: 28, fontWeight: 500, color: 'var(--text-m)', marginTop: 6, alignSelf: 'flex-start' }}>€</span>
             <span style={{ color: 'var(--text)' }}>{balance < 0 ? '−' : ''}{int}</span>
             <span style={{ color: 'var(--text-m)', fontSize: 24, fontWeight: 600, letterSpacing: '-0.5px' }}>,{cents}</span>
+            <span style={{ fontSize: 28, fontWeight: 500, color: 'var(--text-m)', marginBottom: 6, alignSelf: 'flex-end' }}>€</span>
           </div>
           <div style={{ display: 'flex', gap: 16, marginTop: 14, paddingTop: 14, borderTop: '1px solid var(--border)' }}>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 10, color: 'var(--text-m)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1 }}>Ingresos</div>
-              <div className="dn" style={{ fontSize: 15, fontWeight: 600, marginTop: 3, color: 'var(--green)' }}>+€{income.toFixed(0)}</div>
+              <div className="dn" style={{ fontSize: 15, fontWeight: 600, marginTop: 3, color: 'var(--green)' }}>+{income.toFixed(0)}€</div>
             </div>
             <div style={{ width: 1, background: 'var(--border)' }}/>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 10, color: 'var(--text-m)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1 }}>Gastos</div>
-              <div className="dn" style={{ fontSize: 15, fontWeight: 600, marginTop: 3, color: 'var(--text)' }}>−€{spent.toFixed(0)}</div>
+              <div className="dn" style={{ fontSize: 15, fontWeight: 600, marginTop: 3, color: 'var(--text)' }}>−{spent.toFixed(0)}€</div>
             </div>
           </div>
           <div className="actions-grid">
@@ -89,11 +89,11 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 14 }}>
           <div className="stat-card">
             <div className="stat-tag green">↑ Ingresos</div>
-            <div className="dn" style={{ fontSize: 22, fontWeight: 700, color: 'var(--green)' }}>+€{income.toFixed(0)}</div>
+            <div className="dn" style={{ fontSize: 22, fontWeight: 700, color: 'var(--green)' }}>+{income.toFixed(0)}€</div>
           </div>
           <div className="stat-card">
             <div className="stat-tag red">↓ Gastos</div>
-            <div className="dn" style={{ fontSize: 22, fontWeight: 700, color: 'var(--red)' }}>−€{spent.toFixed(0)}</div>
+            <div className="dn" style={{ fontSize: 22, fontWeight: 700, color: 'var(--red)' }}>−{spent.toFixed(0)}€</div>
           </div>
         </div>
 

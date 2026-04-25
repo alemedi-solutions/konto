@@ -16,9 +16,9 @@ export function formatDate(iso: string): string {
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const dd = new Date(d); dd.setHours(0, 0, 0, 0);
   const diff = Math.round((today.getTime() - dd.getTime()) / 86400000);
-  if (diff === 0) return 'Hoy, ' + d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+  if (diff === 0) return 'Hoy';
   if (diff === 1) return 'Ayer';
-  return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+  return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: diff > 365 ? 'numeric' : undefined });
 }
 
 export interface FmtAmt { int: string; cents: string; sign: string }

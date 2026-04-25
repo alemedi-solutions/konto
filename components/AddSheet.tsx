@@ -19,6 +19,7 @@ export function AddSheet({ defaultKind, existing, onClose }: Props) {
   const catList = cats.filter(c => c.kind === kind);
   const [catId, setCatId] = useState(existing?.catId ?? catList[0]?.id ?? '');
   const [name, setName] = useState(existing?.name ?? '');
+  const [date, setDate] = useState(existing ? existing.date.slice(0, 10) : new Date().toISOString().slice(0, 10));
 
   useEffect(() => {
     const list = cats.filter(c => c.kind === kind);
@@ -37,7 +38,7 @@ export function AddSheet({ defaultKind, existing, onClose }: Props) {
     const payload = {
       name: name || cats.find(c => c.id === catId)?.name || 'Movimiento',
       catId, amt: isGasto ? -num : num,
-      date: existing ? existing.date : new Date().toISOString(),
+      date: new Date(date + 'T12:00:00').toISOString(),
     };
     if (existing) updateTx(existing.id, payload); else addTx(payload);
     onClose();
@@ -68,13 +69,16 @@ export function AddSheet({ defaultKind, existing, onClose }: Props) {
 
         <div style={{ textAlign: 'center', padding: '14px 0' }}>
           <div className="dn" style={{ fontSize: 54, fontWeight: 700, letterSpacing: '-2px', lineHeight: 1, color: isGasto ? 'var(--text)' : 'var(--green)' }}>
-            <span style={{ color: 'var(--text-m)', fontWeight: 500 }}>€</span>{amount}
+            {amount}<span style={{ color: 'var(--text-m)', fontWeight: 500 }}>€</span>
           </div>
         </div>
 
         <input value={name} onChange={e => setName(e.target.value)}
           placeholder={isGasto ? 'ej. Cena con Laura' : 'ej. Nómina abril'}
           style={{ width: '100%', padding: '12px 14px', borderRadius: 12, background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--text)', fontSize: 14, marginBottom: 10, textAlign: 'center' }}/>
+
+        <input type="date" value={date} onChange={e => setDate(e.target.value)}
+          style={{ width: '100%', padding: '12px 14px', borderRadius: 12, background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--text)', fontSize: 14, marginBottom: 10, colorScheme: 'light dark' }}/>
 
         <div className="chip-row" style={{ margin: '4px -4px 10px' }}>
           {catList.map(c => (
