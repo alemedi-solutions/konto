@@ -26,9 +26,7 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
   return (
     <div className="screen">
       <div className="hdr">
-        <div style={{ fontFamily: 'Instrument Serif, serif', fontSize: 28, fontStyle: 'italic', fontWeight: 400, color: 'var(--text)', letterSpacing: '-0.5px' }}>
-          Konto
-        </div>
+        <img src="/icon.svg" alt="Konto" style={{ height: 36, width: 36, borderRadius: 9 }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }} onClick={() => onGo('me')}>
           <div style={{ textAlign: 'right' }}>
             <div style={{ fontSize: 11, color: 'var(--text-m)', fontWeight: 500 }}>Hola,</div>
