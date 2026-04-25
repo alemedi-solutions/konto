@@ -84,10 +84,10 @@ export function TxRow({ tx, onClick, last }: { tx: Transaction; onClick: () => v
 
   return (
     <div style={{ position: 'relative', overflow: 'hidden', borderBottom: last ? 'none' : '1px solid var(--border)' }}>
-      <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: SNAP, background: 'var(--red)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: SNAP, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         onClick={() => deleteTx(tx.id)}>
-        <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
+        <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(255,90,110,0.12)', border: '1px solid rgba(255,90,110,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--red)" strokeWidth="2">
             <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
