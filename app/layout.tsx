@@ -2,12 +2,12 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Gastos',
+  title: 'Konto',
   description: 'Control de gastos personal',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Gastos',
+    title: 'Konto',
   },
 };
 
