@@ -61,17 +61,6 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
             <span style={{ color: 'var(--text-m)', fontSize: 24, fontWeight: 600, letterSpacing: '-0.5px' }}>,{cents}</span>
             <span style={{ fontSize: 28, fontWeight: 500, color: 'var(--text-m)', marginBottom: 6, alignSelf: 'flex-end', marginLeft: 4 }}>€</span>
           </div>
-          <div style={{ display: 'flex', gap: 16, marginTop: 14, paddingTop: 14, borderTop: '1px solid var(--border)' }}>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 10, color: 'var(--text-m)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1 }}>Ingresos</div>
-              <div className="dn" style={{ fontSize: 15, fontWeight: 600, marginTop: 3, color: 'var(--green)' }}>+{income.toFixed(0)} €</div>
-            </div>
-            <div style={{ width: 1, background: 'var(--border)' }}/>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 10, color: 'var(--text-m)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1 }}>Gastos</div>
-              <div className="dn" style={{ fontSize: 15, fontWeight: 600, marginTop: 3, color: 'var(--text)' }}>−{spent.toFixed(0)} €</div>
-            </div>
-          </div>
           <div className="actions-grid">
             {actions.map(({ label, primary, action, svg }) => (
               <button key={label} className="action-btn" onClick={action}>
