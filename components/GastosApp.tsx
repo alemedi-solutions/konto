@@ -42,13 +42,8 @@ function AppInner() {
 
 export function GastosApp() {
   return (
-    <div className="phone-outer">
-      <div className="phone-frame">
-        <div className="phone-notch"/>
-        <StoreProvider>
-          <AppInner/>
-        </StoreProvider>
-      </div>
-    </div>
+    <StoreProvider>
+      <AppInner/>
+    </StoreProvider>
   );
 }
