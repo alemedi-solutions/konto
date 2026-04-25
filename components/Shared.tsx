@@ -1,38 +1,9 @@
 'use client';
 
-import React, { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
+import React, { type CSSProperties, type ReactNode } from 'react';
 import { useStore } from '@/lib/store';
 import type { Transaction } from '@/lib/types';
 import { formatDate, fmtAmt } from '@/lib/helpers';
-
-// ─── STATUS BAR ──────────────────────────────────────────────────────────────
-
-export function StatusBar() {
-  const [time, setTime] = useState('');
-  useEffect(() => {
-    const fmt = () => new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
-    setTime(fmt());
-    const i = setInterval(() => setTime(fmt()), 10000);
-    return () => clearInterval(i);
-  }, []);
-  return (
-    <div className="status-bar">
-      <span>{time}</span>
-      <span style={{ display: 'flex', gap: 4, alignItems: 'center', color: 'var(--text-m)' }}>
-        <svg width="16" height="10" viewBox="0 0 16 10" fill="currentColor">
-          <rect x="0" y="6" width="3" height="4" rx="0.5"/>
-          <rect x="4" y="4" width="3" height="6" rx="0.5"/>
-          <rect x="8" y="2" width="3" height="8" rx="0.5"/>
-          <rect x="12" y="0" width="3" height="10" rx="0.5"/>
-        </svg>
-        <svg width="22" height="10" viewBox="0 0 22 10" fill="none" stroke="currentColor" strokeWidth="1">
-          <rect x="0.5" y="0.5" width="19" height="9" rx="2"/>
-          <rect x="2" y="2" width="15" height="6" rx="1" fill="currentColor"/>
-        </svg>
-      </span>
-    </div>
-  );
-}
 
 // ─── HDR BTN ─────────────────────────────────────────────────────────────────
 
@@ -90,15 +61,6 @@ export function Progress({ pct, color, height = 6 }: { pct: number; color?: stri
     <div className="progress" style={{ height }}>
       <span className="progress-bar" style={{ width: `${pct}%`, background: color ?? 'var(--grad)' }} />
     </div>
-  );
-}
-
-// ─── HOME INDICATOR ──────────────────────────────────────────────────────────
-
-export function HomeIndicator() {
-  const { darkMode } = useStore();
-  return (
-    <div className="home-ind" style={{ background: darkMode ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.35)' }} />
   );
 }
 

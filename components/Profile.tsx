@@ -2,7 +2,7 @@
 
 import { useStore } from '@/lib/store';
 import type { GradientKey } from '@/lib/types';
-import { StatusBar, Avatar, HeroCard, Card, SectionTitle, HomeIndicator } from './Shared';
+import { Avatar, HeroCard, Card, SectionTitle } from './Shared';
 import { TabBar } from './TabBar';
 
 export function Profile({ onGo, onReset }: { onGo: (s: string) => void; onReset: () => void }) {
@@ -40,7 +40,6 @@ export function Profile({ onGo, onReset }: { onGo: (s: string) => void; onReset:
 
   return (
     <div className="screen">
-      <StatusBar/>
       <div className="hdr">
         <div className="dn" style={{ fontSize: 24, fontWeight: 700, color: 'var(--text)' }}>Perfil</div>
         <div style={{ width: 40 }}/>
@@ -102,7 +101,6 @@ export function Profile({ onGo, onReset }: { onGo: (s: string) => void; onReset:
         <div style={{ fontSize: 11, color: 'var(--text-f)', textAlign: 'center', marginTop: 16 }}>Datos guardados en este dispositivo</div>
       </div>
       <TabBar current="me" onGo={onGo}/>
-      <HomeIndicator/>
     </div>
   );
 }

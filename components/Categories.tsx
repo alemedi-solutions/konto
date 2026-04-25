@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useStore } from '@/lib/store';
 import type { Category } from '@/lib/types';
 import { PALETTE, EMOJIS } from '@/lib/data';
-import { StatusBar, HdrBtn, Card, HomeIndicator } from './Shared';
+import { HdrBtn, Card } from './Shared';
 import { TabBar } from './TabBar';
 
 function CatSheet({ cat, onClose, onSave, onDelete }: {
@@ -127,7 +127,6 @@ export function Categories({ onGo }: { onGo: (s: string) => void }) {
 
   return (
     <div className="screen">
-      <StatusBar/>
       <div className="hdr">
         <HdrBtn onClick={() => onGo('home')}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -184,7 +183,6 @@ export function Categories({ onGo }: { onGo: (s: string) => void }) {
         </div>
       </div>
       <TabBar current="cats" onGo={id => id === 'add' ? (setEditCat(null), setSheet(true)) : onGo(id)}/>
-      <HomeIndicator/>
       {sheet && <CatSheet cat={editCat} onClose={() => { setSheet(false); setEditCat(null); }} onSave={handleSave} onDelete={handleDelete}/>}
     </div>
   );

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useStore } from '@/lib/store';
 import { formatDate } from '@/lib/helpers';
 import type { Transaction } from '@/lib/types';
-import { StatusBar, HdrBtn, Card, TxRow, HomeIndicator } from './Shared';
+import { HdrBtn, Card, TxRow } from './Shared';
 import { TabBar } from './TabBar';
 
 interface Props { onGo: (s: string) => void; onAdd: (k: string) => void; onOpenTx: (t: Transaction) => void; }
@@ -29,7 +29,6 @@ export function Transactions({ onGo, onAdd, onOpenTx }: Props) {
 
   return (
     <div className="screen">
-      <StatusBar/>
       <div className="hdr">
         <HdrBtn onClick={() => onGo('home')}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -76,7 +75,6 @@ export function Transactions({ onGo, onAdd, onOpenTx }: Props) {
         })}
       </div>
       <TabBar current="tx" onGo={id => id === 'add' ? onAdd('gasto') : onGo(id)}/>
-      <HomeIndicator/>
     </div>
   );
 }

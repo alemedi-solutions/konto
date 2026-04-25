@@ -2,7 +2,7 @@
 
 import { useStore } from '@/lib/store';
 import { sumIncome, sumSpent, fmtAmt } from '@/lib/helpers';
-import { StatusBar, HdrBtn, Avatar, HeroCard, Card, SectionTitle, TxRow, HomeIndicator } from './Shared';
+import { HdrBtn, Avatar, HeroCard, Card, SectionTitle, TxRow } from './Shared';
 import { TabBar } from './TabBar';
 
 interface Props { onGo: (s: string) => void; onAdd: (k: string) => void; onOpenTx: (t: any) => void; }
@@ -25,7 +25,6 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
 
   return (
     <div className="screen">
-      <StatusBar/>
       <div className="hdr">
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <Avatar initials={profile.initials}/>
@@ -120,7 +119,6 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
       </div>
 
       <TabBar current="home" onGo={id => id === 'add' ? onAdd('gasto') : onGo(id)}/>
-      <HomeIndicator/>
     </div>
   );
 }

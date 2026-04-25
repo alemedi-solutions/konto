@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useStore } from '@/lib/store';
 import { sumSpent, fmtAmt } from '@/lib/helpers';
-import { StatusBar, HdrBtn, HeroCard, Card, SectionTitle, Progress, HomeIndicator } from './Shared';
+import { HdrBtn, HeroCard, Card, SectionTitle, Progress } from './Shared';
 import { TabBar } from './TabBar';
 
 export function Budgets({ onGo }: { onGo: (s: string) => void }) {
@@ -22,7 +22,6 @@ export function Budgets({ onGo }: { onGo: (s: string) => void }) {
 
   return (
     <div className="screen">
-      <StatusBar/>
       <div className="hdr">
         <HdrBtn onClick={() => onGo('home')}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -68,7 +67,6 @@ export function Budgets({ onGo }: { onGo: (s: string) => void }) {
         })}
       </div>
       <TabBar current="budget" onGo={onGo}/>
-      <HomeIndicator/>
 
       {editing && (
         <div className="sheet-backdrop" onClick={() => setEditing(null)}>
