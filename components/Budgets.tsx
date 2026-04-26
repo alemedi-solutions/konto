@@ -83,7 +83,7 @@ export function Budgets({ onGo }: { onGo: (s: string) => void }) {
             <input type="number" inputMode="decimal" value={val} onChange={e => setVal(e.target.value)}
               style={{ width: '100%', padding: 14, borderRadius: 14, background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--text)', fontSize: 16, marginBottom: 12 }}/>
             <button className="btn-primary"
-              style={{ background: 'var(--grad)', boxShadow: '0 6px 18px color-mix(in srgb, var(--grad) 22%, transparent)' }}
+              style={{ background: 'color-mix(in srgb,var(--grad) 13%,transparent)', borderColor: 'color-mix(in srgb,var(--grad) 28%,transparent)', color: 'var(--grad)' }}
               onClick={() => { updateCat(editing, { budget: Number(val) || 0 }); setEditing(null); }}>
               Guardar
             </button>

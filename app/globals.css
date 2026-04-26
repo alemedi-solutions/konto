@@ -70,7 +70,7 @@ input { font-family: 'Inter', sans-serif; outline: none; }
 .chip { padding:8px 14px; border-radius:999px; background:var(--surface); border:1px solid var(--border); font-size:13px; font-weight:500; color:var(--text); white-space:nowrap; cursor:pointer; transition:all 0.15s; }
 .chip.active { background:color-mix(in srgb,var(--grad) 13%,transparent); color:var(--grad); border-color:color-mix(in srgb,var(--grad) 25%,transparent); }
 
-.btn-primary { width:100%; padding:16px; border-radius:16px; border:none; font-size:15px; font-weight:700; font-family:'Inter'; cursor:pointer; color:#fff; transition:transform 0.1s; }
+.btn-primary { width:100%; padding:16px; border-radius:16px; border:1px solid transparent; font-size:15px; font-weight:700; font-family:'Inter'; cursor:pointer; transition:transform 0.1s; }
 .btn-primary:hover { transform:translateY(-1px); }
 .btn-primary:active { transform:translateY(1px); }
 

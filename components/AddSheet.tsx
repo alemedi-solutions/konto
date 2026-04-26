@@ -114,8 +114,9 @@ export function AddSheet({ defaultKind, existing, onClose }: Props) {
 
         <button className="btn-primary" style={{
           marginTop: 14,
-          background: isGasto ? 'linear-gradient(135deg,#ff5a6e 0%,#ef4444 100%)' : gradMap[grad],
-          boxShadow: isGasto ? '0 6px 18px rgba(255,90,110,0.18)' : '0 6px 18px color-mix(in srgb, var(--grad) 22%, transparent)',
+          background: isGasto ? 'rgba(255,90,110,0.12)' : 'color-mix(in srgb,var(--grad) 13%,transparent)',
+          borderColor: isGasto ? 'rgba(255,90,110,0.25)' : 'color-mix(in srgb,var(--grad) 28%,transparent)',
+          color: isGasto ? 'color-mix(in srgb,var(--red) 75%,var(--text-s))' : 'var(--grad)',
         }} onClick={save}>
           {existing ? 'Guardar cambios' : `Guardar ${kind}`}
         </button>

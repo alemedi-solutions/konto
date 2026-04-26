@@ -98,7 +98,7 @@ function CatSheet({ cat, onClose, onSave, onDelete }: {
         )}
 
         <button className="btn-primary"
-          style={{ background: color, boxShadow: `0 6px 18px ${color}44` }}
+          style={{ background: `${color}20`, borderColor: `${color}40`, color: color }}
           onClick={() => onSave({ name: name || 'Sin nombre', ico, color, kind, budget: budget ? Number(budget) : undefined })}>
           {isNew ? 'Crear categoría' : 'Guardar cambios'}
         </button>
