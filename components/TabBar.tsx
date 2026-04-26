@@ -23,7 +23,7 @@ export function TabBar({ current, onGo }: { current: string; onGo: (id: string) 
         return (
           <button
             key={t.id}
-            className={`tab-btn${on ? ' active' : ''}`}
+            className={`tab-btn${on ? ' active' : ''}${t.special ? ' tab-special' : ''}`}
             style={{ background: on ? g : 'transparent' }}
             onClick={() => onGo(t.id)}
           >
