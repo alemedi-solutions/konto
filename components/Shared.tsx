@@ -9,7 +9,7 @@ import { formatDate, fmtAmt } from '@/lib/helpers';
 
 export function CatIcon({ ico, logo, color, size = 42 }: { ico: string; logo?: string; color: string; size?: number }) {
   return (
-    <div style={{ width: size, height: size, borderRadius: size * 0.33, background: color, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+    <div style={{ width: size, height: size, borderRadius: size * 0.33, background: `${color}22`, border: `1px solid ${color}38`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
       {logo
         ? <img src={logo} alt={ico} style={{ width: size * 0.52, height: size * 0.52, filter: 'brightness(0) invert(1)' }} />
         : <span style={{ fontSize: size * 0.43 }}>{ico}</span>}
@@ -119,7 +119,7 @@ export function TxRow({ tx, onClick, last }: { tx: Transaction; onClick: () => v
           </div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
-          <div className="dn" style={{ fontSize: 15, fontWeight: 700, color: tx.amt > 0 ? 'var(--green)' : 'var(--text)', whiteSpace: 'nowrap' }}>
+          <div className="dn" style={{ fontSize: 15, fontWeight: 700, color: tx.amt > 0 ? 'color-mix(in srgb,var(--green) 70%,var(--text-s))' : 'var(--text)', whiteSpace: 'nowrap' }}>
             {sign}{int},{cents} €
           </div>
           {tx.recurring && <span style={{ fontSize: 10, color: 'var(--text-f)', fontWeight: 600, letterSpacing: 0.3 }}>↻ mensual</span>}
