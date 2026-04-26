@@ -22,16 +22,9 @@ function CatSheet({ cat, onClose, onSave, onDelete }: {
 
   return (
     <div className="sheet-backdrop" onClick={onClose}>
-      <div className="sheet" onClick={e => e.stopPropagation()} style={{
-        display: 'flex', flexDirection: 'column',
-        height: '92dvh', maxHeight: '92dvh',
-        padding: '14px 16px calc(env(safe-area-inset-bottom) + 12px)',
-        overflowY: 'hidden',
-      }}>
-        <div className="sheet-grip" style={{ flexShrink: 0 }}/>
-
-        {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexShrink: 0 }}>
+      <div className="sheet" onClick={e => e.stopPropagation()} style={{ paddingBottom: 40 }}>
+        <div className="sheet-grip"/>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <HdrBtn onClick={onClose} style={{ background: 'var(--surface2)' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M6 6l12 12M18 6l-12 12" strokeLinecap="round"/></svg>
           </HdrBtn>
@@ -44,8 +37,8 @@ function CatSheet({ cat, onClose, onSave, onDelete }: {
         </div>
 
         {/* Preview + name + kind */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16, flexShrink: 0 }}>
-          <div style={{ width: 58, height: 58, borderRadius: 18, background: `${color}22`, border: `1px solid ${color}35`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
+          <div style={{ width: 64, height: 64, borderRadius: 20, background: `${color}22`, border: `1px solid ${color}35`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, flexShrink: 0 }}>
             {ico}
           </div>
           <div style={{ flex: 1 }}>
@@ -64,13 +57,13 @@ function CatSheet({ cat, onClose, onSave, onDelete }: {
           </div>
         </div>
 
-        {/* Color — fila horizontal deslizable */}
-        <div style={{ marginBottom: 14, flexShrink: 0 }}>
+        {/* Color palette */}
+        <div style={{ marginBottom: 16 }}>
           <div style={{ fontSize: 11, color: 'var(--text-m)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Color</div>
-          <div style={{ display: 'flex', gap: 8, overflowX: 'auto', padding: '3px 0' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {PALETTE.map(c => (
               <div key={c} onClick={() => setColor(c)} style={{
-                width: 30, height: 30, borderRadius: 999, background: c, cursor: 'pointer', flexShrink: 0,
+                width: 32, height: 32, borderRadius: 999, background: c, cursor: 'pointer', flexShrink: 0,
                 border: `2.5px solid ${color === c ? '#fff' : 'transparent'}`,
                 boxShadow: color === c ? `0 0 0 1px ${c}` : 'none',
                 transition: 'all .15s',
@@ -79,33 +72,33 @@ function CatSheet({ cat, onClose, onSave, onDelete }: {
           </div>
         </div>
 
-        {/* Emoji — fila horizontal deslizable */}
-        <div style={{ marginBottom: 14, flexShrink: 0 }}>
+        {/* Emoji picker */}
+        <div style={{ marginBottom: 16 }}>
           <div style={{ fontSize: 11, color: 'var(--text-m)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Icono</div>
-          <div style={{ display: 'flex', gap: 6, overflowX: 'auto', padding: '3px 0' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {EMOJIS.map(e => (
               <button key={e} onClick={() => setIco(e)} style={{
-                width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+                width: 38, height: 38, borderRadius: 10,
                 background: ico === e ? `${color}20` : 'var(--surface2)',
                 border: `1px solid ${ico === e ? `${color}40` : 'var(--border)'}`,
-                fontSize: 18, cursor: 'pointer', transition: 'all .15s',
+                fontSize: 18, cursor: 'pointer',
+                transition: 'all .15s',
               }}>{e}</button>
             ))}
           </div>
         </div>
 
-        {/* Budget — solo gastos */}
+        {/* Budget (gastos only) */}
         {kind === 'gasto' && (
-          <div style={{ marginBottom: 14, flexShrink: 0 }}>
+          <div style={{ marginBottom: 16 }}>
             <div style={{ fontSize: 11, color: 'var(--text-m)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Presupuesto mensual (€)</div>
             <input type="number" inputMode="decimal" value={budget} onChange={e => setBudget(e.target.value)} placeholder="ej. 150"
-              style={{ width: '100%', padding: '11px 14px', borderRadius: 12, background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--text)', fontSize: 15 }}/>
+              style={{ width: '100%', padding: '10px 14px', borderRadius: 12, background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--text)', fontSize: 15 }}/>
           </div>
         )}
 
-        {/* Save — siempre al fondo */}
         <button className="btn-primary"
-          style={{ marginTop: 'auto', flexShrink: 0, background: `${color}20`, borderColor: `${color}40`, color: color }}
+          style={{ background: `${color}20`, borderColor: `${color}40`, color: color }}
           onClick={() => onSave({ name: name || 'Sin nombre', ico, color, kind, budget: budget ? Number(budget) : undefined })}>
           {isNew ? 'Crear categoría' : 'Guardar cambios'}
         </button>
