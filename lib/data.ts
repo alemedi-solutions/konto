@@ -1,4 +1,4 @@
-import type { Category, Transaction } from './types';
+import type { Category, Transaction, Loan } from './types';
 
 export const DEFAULT_CATS: Category[] = [
   { id: 'super', name: 'Supermercado', color: '#ff6b3d', ico: '🛒', kind: 'gasto', budget: 250 },
@@ -33,6 +33,12 @@ export const SEED_TX: Transaction[] = [
   { id: 't8',  name: 'BasicFit',       catId: 'salud', date: daysAgo(5), amt: -29.90 },
   { id: 't9',  name: 'Freelance web',  catId: 'free',  date: daysAgo(6), amt: 350.00 },
   { id: 't10', name: 'Carrefour',      catId: 'super', date: daysAgo(7), amt: -61.20 },
+];
+
+export const SEED_LOANS: Loan[] = [
+  { id: 'ln1', name: 'Hipoteca',          ico: '🏠', color: '#60a5fa', totalAmount: 180000, monthlyPayment: 650,  startDate: '2021-06-01', totalMonths: 360 },
+  { id: 'ln2', name: 'Coche',             ico: '🚗', color: '#a78bfa', totalAmount: 18000,  monthlyPayment: 320,  startDate: '2023-01-01', totalMonths: 60  },
+  { id: 'ln3', name: 'Préstamo personal', ico: '💳', color: '#fb923c', totalAmount: 5000,   monthlyPayment: 220,  startDate: '2025-01-01', totalMonths: 24  },
 ];
 
 export const GRAD_MAP: Record<string, string> = {

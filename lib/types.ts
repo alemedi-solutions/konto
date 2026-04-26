@@ -25,4 +25,15 @@ export interface Profile {
 
 export type GradientKey = 'slate' | 'violet' | 'sunset' | 'ocean' | 'mint';
 
-export type Screen = 'home' | 'tx' | 'stats' | 'budget' | 'cats' | 'me';
+export type Screen = 'home' | 'tx' | 'stats' | 'budget' | 'cats' | 'me' | 'loans';
+
+export interface Loan {
+  id: string;
+  name: string;
+  ico: string;
+  color: string;
+  totalAmount: number;
+  monthlyPayment: number;
+  startDate: string;
+  totalMonths: number;
+}

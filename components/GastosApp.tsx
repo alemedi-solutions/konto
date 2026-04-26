@@ -10,6 +10,7 @@ import { Analytics } from './Analytics';
 import { Budgets } from './Budgets';
 import { Categories } from './Categories';
 import { Profile } from './Profile';
+import { Loans } from './Loans';
 import { AddSheet } from './AddSheet';
 
 function AppInner() {
@@ -30,6 +31,7 @@ function AppInner() {
     budget: <Budgets     onGo={goTo}/>,
     cats:   <Categories  onGo={goTo}/>,
     me:     <Profile     onGo={goTo} onReset={reset}/>,
+    loans:  <Loans       onGo={goTo}/>,
   };
 
   return (
