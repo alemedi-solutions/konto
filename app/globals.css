@@ -51,7 +51,7 @@ input { font-family: 'Inter', sans-serif; outline: none; }
 .delta.neg { background:rgba(255,90,110,0.15); color:var(--red); border-color:rgba(255,90,110,0.25); }
 
 .tabbar { position:fixed; bottom:0; left:0; right:0; transform:none; z-index:20; background:var(--tab-bg); backdrop-filter:blur(24px) saturate(180%); border-top:1px solid var(--border-s); border-radius:20px 20px 0 0; padding:10px 8px calc(env(safe-area-inset-bottom) + 6px); display:flex; gap:0; justify-content:space-around; box-shadow:0 -4px 24px rgba(0,0,0,0.18); }
-.tab-btn { flex:1; height:44px; border-radius:14px; border:none; display:flex; align-items:center; justify-content:center; color:var(--text-m); transition:all 0.2s; }
+.tab-btn { flex:1; height:44px; border-radius:14px; border:none; background:transparent; display:flex; align-items:center; justify-content:center; color:var(--text-m); transition:all 0.2s; }
 .tab-btn.active { color:var(--grad); background:color-mix(in srgb, var(--grad) 11%, transparent); }
 .tab-special { border-radius:999px !important; width:44px; flex:none; border:1.5px solid var(--border-s); color:var(--text-m); }
 
