@@ -23,6 +23,6 @@ export interface Profile {
   initials: string;
 }
 
-export type GradientKey = 'violet' | 'sunset' | 'ocean' | 'mint';
+export type GradientKey = 'slate' | 'violet' | 'sunset' | 'ocean' | 'mint';
 
 export type Screen = 'home' | 'tx' | 'stats' | 'budget' | 'cats' | 'me';

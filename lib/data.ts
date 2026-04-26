@@ -36,6 +36,7 @@ export const SEED_TX: Transaction[] = [
 ];
 
 export const GRAD_MAP: Record<string, string> = {
+  slate:  '#8892a4',
   violet: '#a78bfa',
   sunset: '#fb923c',
   ocean:  '#38bdf8',

@@ -35,7 +35,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [tx, setTx] = useState<Transaction[]>(SEED_TX);
   const profile = { name: 'Alejandro Mediavilla', email: 'alejandromediavilla@ebroker.es', initials: 'AM' };
   const [darkMode, setDarkMode] = useState(false);
-  const [grad, setGradState] = useState<GradientKey>('ocean');
+  const [grad, setGradState] = useState<GradientKey>('slate');
 
   useEffect(() => {
     const currentMk = monthKey(new Date());

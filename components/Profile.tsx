@@ -26,6 +26,7 @@ export function Profile({ onGo, onReset }: { onGo: (s: string) => void; onReset:
   };
 
   const gradients: { id: GradientKey; g: string }[] = [
+    { id: 'slate',  g: '#8892a4' },
     { id: 'violet', g: '#a78bfa' },
     { id: 'sunset', g: '#fb923c' },
     { id: 'ocean',  g: '#38bdf8' },
