@@ -38,7 +38,7 @@ function CatSheet({ cat, onClose, onSave, onDelete }: {
 
         {/* Preview + name + kind */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
-          <div style={{ width: 64, height: 64, borderRadius: 20, background: color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, flexShrink: 0, boxShadow: `0 6px 18px ${color}55` }}>
+          <div style={{ width: 64, height: 64, borderRadius: 20, background: `${color}22`, border: `1px solid ${color}35`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, flexShrink: 0 }}>
             {ico}
           </div>
           <div style={{ flex: 1 }}>
@@ -48,8 +48,8 @@ function CatSheet({ cat, onClose, onSave, onDelete }: {
               {(['gasto', 'ingreso'] as const).map(k => (
                 <button key={k} onClick={() => setKind(k)} style={{
                   padding: '5px 12px', borderRadius: 999, fontSize: 12, fontWeight: 600,
-                  color: kind === k ? '#fff' : 'var(--text-m)',
-                  background: kind === k ? k === 'gasto' ? 'linear-gradient(135deg,#ff5a6e,#ef4444)' : 'linear-gradient(135deg,#22d3a5,#14b87f)' : 'transparent',
+                  color: kind === k ? k === 'gasto' ? 'color-mix(in srgb,var(--red) 75%,var(--text-s))' : 'color-mix(in srgb,var(--green) 75%,var(--text-s))' : 'var(--text-m)',
+                  background: kind === k ? k === 'gasto' ? 'rgba(255,90,110,0.12)' : 'rgba(34,211,165,0.12)' : 'transparent',
                   border: 'none', transition: 'all .2s', textTransform: 'capitalize',
                 }}>{k}</button>
               ))}
@@ -79,10 +79,9 @@ function CatSheet({ cat, onClose, onSave, onDelete }: {
             {EMOJIS.map(e => (
               <button key={e} onClick={() => setIco(e)} style={{
                 width: 38, height: 38, borderRadius: 10,
-                background: ico === e ? color : 'var(--surface2)',
-                border: `1px solid ${ico === e ? 'transparent' : 'var(--border)'}`,
+                background: ico === e ? `${color}20` : 'var(--surface2)',
+                border: `1px solid ${ico === e ? `${color}40` : 'var(--border)'}`,
                 fontSize: 18, cursor: 'pointer',
-                boxShadow: ico === e ? `0 3px 8px ${color}55` : 'none',
                 transition: 'all .15s',
               }}>{e}</button>
             ))}
@@ -140,7 +139,7 @@ export function Categories({ onGo }: { onGo: (s: string) => void }) {
         <div className="pill-group" style={{ marginBottom: 16 }}>
           {(['gasto', 'ingreso'] as const).map(k => (
             <button key={k} className={`pill${tab === k ? ' active' : ''}`}
-              style={tab === k ? { background: k === 'gasto' ? 'linear-gradient(135deg,#ff5a6e,#ef4444)' : 'linear-gradient(135deg,#22d3a5,#14b87f)' } : {}}
+              style={tab === k ? { background: k === 'gasto' ? 'rgba(255,90,110,0.12)' : 'rgba(34,211,165,0.12)', color: k === 'gasto' ? 'color-mix(in srgb,var(--red) 75%,var(--text-s))' : 'color-mix(in srgb,var(--green) 75%,var(--text-s))' } : {}}
               onClick={() => setTab(k)}>
               {k === 'gasto' ? 'Gastos' : 'Ingresos'}
             </button>
@@ -161,7 +160,7 @@ export function Categories({ onGo }: { onGo: (s: string) => void }) {
                 onClick={() => { setEditCat(c); setSheet(true); }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.opacity = '0.8'}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.opacity = '1'}>
-                <div style={{ width: 44, height: 44, borderRadius: 14, background: c.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0, boxShadow: `0 4px 12px ${c.color}55` }}>
+                <div style={{ width: 44, height: 44, borderRadius: 14, background: `${c.color}22`, border: `1px solid ${c.color}35`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0 }}>
                   {c.ico}
                 </div>
                 <div style={{ flex: 1 }}>
@@ -169,7 +168,7 @@ export function Categories({ onGo }: { onGo: (s: string) => void }) {
                   {c.budget && <div style={{ fontSize: 12, color: 'var(--text-m)', marginTop: 1 }}>Presupuesto: {c.budget} €/mes</div>}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <div style={{ width: 10, height: 10, borderRadius: '50%', background: c.color, boxShadow: `0 0 6px ${c.color}` }}/>
+                  <div style={{ width: 8, height: 8, borderRadius: '50%', background: `${c.color}90` }}/>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ opacity: 0.35, color: 'var(--text)' }}><path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </div>
               </div>

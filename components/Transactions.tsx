@@ -50,7 +50,7 @@ export function Transactions({ onGo, onAdd, onOpenTx }: Props) {
           <span className={`chip${catFilter === 'all' ? ' active' : ''}`} onClick={() => setCatFilter('all')}>Todas</span>
           {cats.filter(c => c.kind === 'gasto').map(c => (
             <span key={c.id} className={`chip${catFilter === c.id ? ' active' : ''}`}
-              style={catFilter === c.id ? { background: c.color, borderColor: 'transparent', boxShadow: `0 3px 9px ${c.color}55` } : {}}
+              style={catFilter === c.id ? { background: `${c.color}20`, borderColor: `${c.color}40`, color: c.color } : {}}
               onClick={() => setCatFilter(c.id)}>
               {c.ico} {c.name}
             </span>

@@ -64,7 +64,7 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
               <div className="hero-label">
-                <span className="hero-label-dot" style={{ background: 'var(--green)', boxShadow: '0 0 10px rgba(34,211,165,0.6)' }}/>
+                <span className="hero-label-dot" style={{ background: 'color-mix(in srgb,var(--green) 60%,var(--surface2))' }}/>
                 Balance disponible
               </div>
               <div style={{ fontFamily: 'Instrument Serif, serif', fontSize: 13, fontStyle: 'italic', color: 'var(--text-m)', marginTop: 4, textTransform: 'lowercase' }}>
@@ -98,11 +98,11 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 14 }}>
           <div className="stat-card">
             <div className="stat-tag green">↑ Ingresos</div>
-            <div className="dn" style={{ fontSize: 22, fontWeight: 700, color: 'var(--green)' }}>+{income.toFixed(0)} €</div>
+            <div className="dn" style={{ fontSize: 22, fontWeight: 700, color: 'color-mix(in srgb,var(--green) 70%,var(--text-s))' }}>+{income.toFixed(0)} €</div>
           </div>
           <div className="stat-card">
             <div className="stat-tag red">↓ Gastos</div>
-            <div className="dn" style={{ fontSize: 22, fontWeight: 700, color: 'var(--red)' }}>−{spent.toFixed(0)} €</div>
+            <div className="dn" style={{ fontSize: 22, fontWeight: 700, color: 'color-mix(in srgb,var(--red) 70%,var(--text-s))' }}>−{spent.toFixed(0)} €</div>
           </div>
         </div>
 

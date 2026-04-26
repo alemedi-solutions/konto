@@ -8,7 +8,6 @@ const TABS: { id: Screen | 'add'; special?: boolean; path: React.ReactNode }[] =
   { id: 'add', special: true, path: <path d="M12 5v14M5 12h14" strokeLinecap="round"/> },
   { id: 'stats', path: <><path d="M21.21 15.89A10 10 0 1 1 8 2.83" strokeLinecap="round"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></> },
   { id: 'cats',  path: <><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" strokeLinejoin="round"/><line x1="7" y1="7" x2="7.01" y2="7" strokeLinecap="round" strokeWidth="3"/></> },
-  { id: 'me',    path: <><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></> },
 ];
 
 export function TabBar({ current, onGo }: { current: string; onGo: (id: string) => void }) {
