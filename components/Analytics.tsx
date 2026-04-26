@@ -81,7 +81,7 @@ export function Analytics({ onGo }: { onGo: (s: string) => void }) {
       <div className="screen-body">
         <HeroCard>
           <div className="hero-label">
-            <span className="hero-label-dot" style={{ background: 'var(--red)', boxShadow: '0 0 10px rgba(255,90,110,0.6)' }}/>
+            <span className="hero-label-dot" style={{ background: 'color-mix(in srgb,var(--red) 60%,var(--surface2))' }}/>
             Gastado · {new Date().toLocaleDateString('es-ES', { month: 'long' })}
           </div>
           <div className="hero-amount">
@@ -97,8 +97,7 @@ export function Analytics({ onGo }: { onGo: (s: string) => void }) {
                     width: '100%',
                     height: Math.max(3, (m.eur / maxM * 88)) + 'px',
                     borderRadius: 8,
-                    background: m.current ? 'var(--grad)' : 'rgba(255,255,255,0.1)',
-                    boxShadow: m.current ? '0 4px 14px color-mix(in srgb, var(--grad) 40%, transparent)' : 'none',
+                    background: m.current ? 'color-mix(in srgb,var(--grad) 60%,var(--surface2))' : 'rgba(255,255,255,0.08)',
                     transition: 'height .4s ease',
                   }}/>
                 </div>
@@ -114,7 +113,7 @@ export function Analytics({ onGo }: { onGo: (s: string) => void }) {
             <div key={i} style={{ flexShrink: 0, background: 'var(--surface)', border: `1px solid ${ins.positive ? 'rgba(34,211,165,0.2)' : ins.negative ? 'rgba(255,90,110,0.2)' : 'var(--border)'}`, borderRadius: 18, padding: '12px 16px', minWidth: 120 }}>
               <div style={{ fontSize: 22, marginBottom: 8 }}>{ins.ico}</div>
               <div style={{ fontSize: 11, color: 'var(--text-f)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 3 }}>{ins.label}</div>
-              <div className="dn" style={{ fontSize: 20, fontWeight: 700, color: ins.positive ? 'var(--green)' : ins.negative ? 'var(--red)' : 'var(--text)', letterSpacing: '-0.5px' }}>{ins.value}</div>
+              <div className="dn" style={{ fontSize: 20, fontWeight: 700, color: ins.positive ? 'color-mix(in srgb,var(--green) 70%,var(--text-s))' : ins.negative ? 'color-mix(in srgb,var(--red) 70%,var(--text-s))' : 'var(--text)', letterSpacing: '-0.5px' }}>{ins.value}</div>
               {ins.sub && <div style={{ fontSize: 11, color: 'var(--text-m)', marginTop: 2 }}>{ins.sub}</div>}
             </div>
           ))}
@@ -129,13 +128,13 @@ export function Analytics({ onGo }: { onGo: (s: string) => void }) {
           <Card style={{ padding: '6px 16px' }}>
             {catRows.map((c, i) => (
               <div key={c.id ?? i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 0', borderBottom: i === catRows.length - 1 ? 'none' : '1px solid var(--border)' }}>
-                <div style={{ width: 40, height: 40, borderRadius: 14, background: c.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0, boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>{c.ico}</div>
+                <div style={{ width: 40, height: 40, borderRadius: 14, background: `${c.color}22`, border: `1px solid ${c.color}38`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0 }}>{c.ico}</div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontWeight: 600, marginBottom: 6 }}>
                     <span style={{ color: 'var(--text)' }}>{c.name}</span>
                     <span className="dn" style={{ color: 'var(--text)' }}>{c.eur.toFixed(2)} €</span>
                   </div>
-                  <Progress pct={(c.eur / (spent || 1)) * 100} color={c.color}/>
+                  <Progress pct={(c.eur / (spent || 1)) * 100} color={`color-mix(in srgb,${c.color} 65%,transparent)`}/>
                 </div>
               </div>
             ))}
