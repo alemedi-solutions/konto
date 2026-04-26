@@ -7,7 +7,7 @@ const TABS: { id: Screen | 'add'; special?: boolean; path: React.ReactNode }[] =
   { id: 'tx',    path: <><path d="M7 4v16M4 7l3-3 3 3" strokeLinecap="round" strokeLinejoin="round"/><path d="M17 20V4M14 17l3 3 3-3" strokeLinecap="round" strokeLinejoin="round"/></> },
   { id: 'add', special: true, path: <path d="M12 5v14M5 12h14" strokeLinecap="round"/> },
   { id: 'stats', path: <><path d="M3 17l5-5 4 3 7-9" strokeLinecap="round" strokeLinejoin="round"/><path d="M3 20h18" strokeLinecap="round"/></> },
-  { id: 'cats',  path: <><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7z"/><path d="M4 11h16"/><path d="M10 7v12"/></> },
+  { id: 'cats',  path: <><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></> },
   { id: 'me',    path: <><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></> },
 ];
 
