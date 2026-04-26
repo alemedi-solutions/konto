@@ -1,6 +1,5 @@
 'use client';
 
-import { useStore } from '@/lib/store';
 import type { Screen } from '@/lib/types';
 
 const TABS: { id: Screen | 'add'; special?: boolean; path: React.ReactNode }[] = [
@@ -13,9 +12,6 @@ const TABS: { id: Screen | 'add'; special?: boolean; path: React.ReactNode }[] =
 ];
 
 export function TabBar({ current, onGo }: { current: string; onGo: (id: string) => void }) {
-  const { gradMap, grad } = useStore();
-  const g = gradMap[grad];
-
   return (
     <div className="tabbar">
       {TABS.map(t => {
@@ -24,7 +20,6 @@ export function TabBar({ current, onGo }: { current: string; onGo: (id: string) 
           <button
             key={t.id}
             className={`tab-btn${on ? ' active' : ''}${t.special ? ' tab-special' : ''}`}
-            style={{ background: on ? g : 'transparent' }}
             onClick={() => onGo(t.id)}
           >
             <svg width="20" height="20" viewBox="0 0 24 24"
