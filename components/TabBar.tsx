@@ -23,7 +23,7 @@ export function TabBar({ current, onGo }: { current: string; onGo: (id: string) 
           >
             <svg width="20" height="20" viewBox="0 0 24 24"
               fill={on && !t.special ? 'currentColor' : 'none'}
-              stroke="currentColor" strokeWidth="2">
+              stroke={t.special ? '#10B981' : 'currentColor'} strokeWidth="2">
               {t.path}
             </svg>
           </button>
