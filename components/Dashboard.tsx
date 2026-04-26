@@ -83,10 +83,9 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
           <div className="actions-grid">
             {actions.map(({ label, primary, action, svg }) => (
               <button key={label} className="action-btn" onClick={action}>
-                <div className={`action-ico${primary ? ' primary' : ''}`}
-                  style={{ background: primary ? gradMap[grad] : undefined }}>
+                <div className={`action-ico${primary ? ' primary' : ''}`}>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                    stroke={primary ? '#fff' : 'currentColor'} strokeWidth={primary ? 2.4 : 2}>
+                    stroke="currentColor" strokeWidth="2">
                     {svg}
                   </svg>
                 </div>
