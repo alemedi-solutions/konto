@@ -19,17 +19,18 @@
   --tab-bg: rgba(255,255,255,0.98);
   --tab-shadow: 0 10px 30px rgba(0,0,0,0.12), 0 0 0 6px rgba(245,245,250,0.6);
 }
-html { height: 100%; height: -webkit-fill-available; }
-body { height: 100%; min-height: -webkit-fill-available; margin: 0; background: var(--bg); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; }
+html, body { height: 100%; margin: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--bg); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; }
 #__next, main { height: 100%; }
 
-.screen { width: 100%; height: 100%; display: flex; flex-direction: column; background: var(--bg); overflow: hidden; position: relative; padding-top: env(safe-area-inset-top); }
+.screen { width: 100%; height: 100dvh; display: flex; flex-direction: column; background: var(--bg); overflow: hidden; position: relative; padding-top: env(safe-area-inset-top); }
 button { cursor: pointer; font-family: 'Inter', sans-serif; border: none; outline: none; }
 input { font-family: 'Inter', sans-serif; outline: none; }
 *::-webkit-scrollbar { display: none; }
 * { scrollbar-width: none; }
 .dn { font-family: 'DM Sans','Inter',sans-serif; letter-spacing: -0.04em; font-feature-settings:'tnum','ss01'; font-variant-numeric: tabular-nums; }
-.screen-body { flex: 1; overflow-y: auto; padding: 0 16px calc(env(safe-area-inset-bottom) + 80px); position: relative; }
+.screen-body { flex: 1; min-height: 0; overflow-y: auto; padding: 0 16px 16px; position: relative; }
 .screen-body::before { content: ''; position: fixed; width: 320px; height: 320px; left: -80px; top: 30px; background: radial-gradient(circle, color-mix(in srgb, var(--grad) 8%, transparent) 0%, transparent 60%); pointer-events: none; z-index: 0; }
 .screen-body > * { position: relative; z-index: 1; }
 
@@ -50,7 +51,7 @@ input { font-family: 'Inter', sans-serif; outline: none; }
 .delta { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:999px; background:rgba(34,211,165,0.09); color:color-mix(in srgb,var(--green) 70%,var(--text-s)); font-size:12px; font-weight:700; border:1px solid rgba(34,211,165,0.15); }
 .delta.neg { background:rgba(255,90,110,0.09); color:color-mix(in srgb,var(--red) 70%,var(--text-s)); border-color:rgba(255,90,110,0.15); }
 
-.tabbar { position:fixed; bottom:0; left:0; right:0; transform:none; z-index:20; background:var(--tab-bg); backdrop-filter:blur(24px) saturate(180%); border-top:1px solid var(--border-s); border-radius:20px 20px 0 0; padding:10px 8px calc(env(safe-area-inset-bottom) + 6px); display:flex; gap:0; justify-content:space-around; box-shadow:0 -4px 24px rgba(0,0,0,0.18); }
+.tabbar { flex-shrink:0; z-index:20; background:var(--tab-bg); backdrop-filter:blur(24px) saturate(180%); border-top:1px solid var(--border-s); border-radius:20px 20px 0 0; padding:10px 8px calc(env(safe-area-inset-bottom) + 6px); display:flex; gap:0; justify-content:space-around; box-shadow:0 -4px 24px rgba(0,0,0,0.18); }
 .tab-btn { flex:1; height:44px; border-radius:14px; border:none; background:transparent; display:flex; align-items:center; justify-content:center; color:var(--text-m); transition:all 0.2s; }
 .tab-btn.active { color:var(--grad); background:color-mix(in srgb, var(--grad) 11%, transparent); }
 
