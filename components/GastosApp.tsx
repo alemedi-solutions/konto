@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StoreProvider, useStore } from '@/lib/store';
 import type { Screen } from '@/lib/types';
 import type { Transaction } from '@/lib/types';
@@ -31,6 +31,11 @@ function AppInner() {
   const [screen, setScreen] = useState<Screen>('home');
   const [sheet, setSheet] = useState<'gasto' | 'ingreso' | null>(null);
   const [editTx, setEditTx] = useState<Transaction | null>(null);
+
+  // Aplica el tema al elemento html para que el fondo cubra toda la pantalla (incluido safe area)
+  useEffect(() => {
+    document.documentElement.className = darkMode ? '' : 'light';
+  }, [darkMode]);
 
   const openAdd = (kind: string) => { setEditTx(null); setSheet(kind as 'gasto' | 'ingreso'); };
   const openEdit = (tx: Transaction) => { setEditTx(tx); setSheet(tx.amt > 0 ? 'ingreso' : 'gasto'); };
