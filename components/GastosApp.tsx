@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { StoreProvider, useStore } from '@/lib/store';
 import type { Screen } from '@/lib/types';
 import type { Transaction } from '@/lib/types';
@@ -32,11 +33,14 @@ function AppInner() {
   const [screen, setScreen] = useState<Screen>('home');
   const [sheet, setSheet] = useState<'gasto' | 'ingreso' | null>(null);
   const [editTx, setEditTx] = useState<Transaction | null>(null);
+  const [mounted, setMounted] = useState(false);
 
-  // Aplica el tema al elemento html para que el fondo cubra toda la pantalla (incluido safe area)
+  useEffect(() => { setMounted(true); }, []);
+
   useEffect(() => {
     document.documentElement.className = darkMode ? '' : 'light';
-  }, [darkMode]);
+    document.documentElement.style.setProperty('--grad', gradMap[grad]);
+  }, [darkMode, grad, gradMap]);
 
   const openAdd = (kind: string) => { setEditTx(null); setSheet(kind as 'gasto' | 'ingreso'); };
   const openEdit = (tx: Transaction) => { setEditTx(tx); setSheet(tx.amt > 0 ? 'ingreso' : 'gasto'); };
@@ -54,10 +58,10 @@ function AppInner() {
   };
 
   return (
-    <div className={darkMode ? '' : 'light'} style={{ width: '100%', height: '100%', position: 'relative', ['--grad' as string]: gradMap[grad] }}>
+    <div style={{ width: '100%', height: '100%' }}>
       {loading ? <LoadingScreen/> : screens[screen]}
       {!loading && sheet && <AddSheet defaultKind={sheet} existing={editTx} onClose={closeSheet}/>}
-      {!loading && <TabBar current={screen} onGo={goTo}/>}
+      {mounted && createPortal(<TabBar current={screen} onGo={goTo}/>, document.body)}
     </div>
   );
 }
