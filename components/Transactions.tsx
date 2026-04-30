@@ -74,7 +74,7 @@ export function Transactions({ onGo, onAdd, onOpenTx }: Props) {
           );
         })}
       </div>
-      <TabBar current="tx" onGo={id => id === 'add' ? onAdd('gasto') : onGo(id)}/>
+      <TabBar current="tx" onGo={onGo}/>
     </div>
   );
 }

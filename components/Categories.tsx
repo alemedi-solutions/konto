@@ -181,7 +181,7 @@ export function Categories({ onGo }: { onGo: (s: string) => void }) {
           </div>
         </div>
       </div>
-      <TabBar current="cats" onGo={id => id === 'add' ? (setEditCat(null), setSheet(true)) : onGo(id)}/>
+      <TabBar current="cats" onGo={onGo}/>
       {sheet && <CatSheet cat={editCat} onClose={() => { setSheet(false); setEditCat(null); }} onSave={handleSave} onDelete={handleDelete}/>}
     </div>
   );

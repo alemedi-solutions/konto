@@ -289,7 +289,7 @@ export function Loans({ onGo }: { onGo: (s: string) => void }) {
         )}
       </div>
 
-      <TabBar current="loans" onGo={id => id === 'add' ? openNew() : onGo(id)}/>
+      <TabBar current="loans" onGo={onGo}/>
 
       {sheet && (
         <LoanSheet

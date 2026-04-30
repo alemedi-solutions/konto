@@ -122,7 +122,7 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
         )}
       </div>
 
-      <TabBar current="home" onGo={id => id === 'add' ? onAdd('gasto') : onGo(id)}/>
+      <TabBar current="home" onGo={onGo}/>
     </div>
   );
 }
