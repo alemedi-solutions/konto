@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useStore } from '@/lib/store';
 import { sumIncome, sumSpent, fmtAmt, monthKey } from '@/lib/helpers';
 import { Avatar, HeroCard, Card, SectionTitle, TxRow } from './Shared';
-import { TabBar } from './TabBar';
 
 interface Props { onGo: (s: string) => void; onAdd: (k: string) => void; onOpenTx: (t: any) => void; }
 
@@ -122,7 +121,6 @@ export function Dashboard({ onGo, onAdd, onOpenTx }: Props) {
         )}
       </div>
 
-      <TabBar current="home" onGo={onGo}/>
     </div>
   );
 }

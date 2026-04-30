@@ -12,6 +12,7 @@ import { Categories } from './Categories';
 import { Profile } from './Profile';
 import { Loans } from './Loans';
 import { AddSheet } from './AddSheet';
+import { TabBar } from './TabBar';
 
 function LoadingScreen() {
   return (
@@ -56,6 +57,7 @@ function AppInner() {
     <div className={darkMode ? '' : 'light'} style={{ width: '100%', height: '100%', position: 'relative', ['--grad' as string]: gradMap[grad] }}>
       {loading ? <LoadingScreen/> : screens[screen]}
       {!loading && sheet && <AddSheet defaultKind={sheet} existing={editTx} onClose={closeSheet}/>}
+      {!loading && <TabBar current={screen} onGo={goTo}/>}
     </div>
   );
 }

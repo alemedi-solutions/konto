@@ -5,7 +5,6 @@ import { useStore } from '@/lib/store';
 import type { Loan } from '@/lib/types';
 import { PALETTE, EMOJIS } from '@/lib/data';
 import { HdrBtn, HeroCard, Card, SectionTitle } from './Shared';
-import { TabBar } from './TabBar';
 
 const fmt = (n: number) => Math.round(n).toLocaleString('es-ES');
 
@@ -288,8 +287,6 @@ export function Loans({ onGo }: { onGo: (s: string) => void }) {
           </>
         )}
       </div>
-
-      <TabBar current="loans" onGo={onGo}/>
 
       {sheet && (
         <LoanSheet

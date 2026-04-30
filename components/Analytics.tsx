@@ -3,7 +3,6 @@
 import { useStore } from '@/lib/store';
 import { sumSpent, fmtAmt, monthKey } from '@/lib/helpers';
 import { HdrBtn, HeroCard, Card, SectionTitle, Progress } from './Shared';
-import { TabBar } from './TabBar';
 
 export function Analytics({ onGo }: { onGo: (s: string) => void }) {
   const { tx, cats } = useStore();
@@ -141,7 +140,6 @@ export function Analytics({ onGo }: { onGo: (s: string) => void }) {
           </Card>
         )}
       </div>
-      <TabBar current="stats" onGo={onGo}/>
     </div>
   );
 }

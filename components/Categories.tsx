@@ -5,7 +5,6 @@ import { useStore } from '@/lib/store';
 import type { Category } from '@/lib/types';
 import { PALETTE, EMOJIS } from '@/lib/data';
 import { HdrBtn, Card } from './Shared';
-import { TabBar } from './TabBar';
 
 function CatSheet({ cat, onClose, onSave, onDelete }: {
   cat: Category | null;
@@ -181,7 +180,6 @@ export function Categories({ onGo }: { onGo: (s: string) => void }) {
           </div>
         </div>
       </div>
-      <TabBar current="cats" onGo={onGo}/>
       {sheet && <CatSheet cat={editCat} onClose={() => { setSheet(false); setEditCat(null); }} onSave={handleSave} onDelete={handleDelete}/>}
     </div>
   );

@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useStore } from '@/lib/store';
 import { sumSpent, fmtAmt } from '@/lib/helpers';
 import { HdrBtn, HeroCard, Card, SectionTitle, Progress, CatIcon } from './Shared';
-import { TabBar } from './TabBar';
 
 export function Budgets({ onGo }: { onGo: (s: string) => void }) {
   const { cats, updateCat } = useStore();
@@ -66,8 +65,6 @@ export function Budgets({ onGo }: { onGo: (s: string) => void }) {
           );
         })}
       </div>
-      <TabBar current="budget" onGo={onGo}/>
-
       {editing && (
         <div className="sheet-backdrop" onClick={() => setEditing(null)}>
           <div className="sheet" onClick={e => e.stopPropagation()}>

@@ -3,7 +3,6 @@
 import { useStore } from '@/lib/store';
 import type { GradientKey } from '@/lib/types';
 import { Avatar, HeroCard, Card, SectionTitle } from './Shared';
-import { TabBar } from './TabBar';
 
 export function Profile({ onGo, onReset }: { onGo: (s: string) => void; onReset: () => void }) {
   const { profile, tx, cats, darkMode, toggleDark, grad, setGrad } = useStore();
@@ -101,7 +100,6 @@ export function Profile({ onGo, onReset }: { onGo: (s: string) => void; onReset:
         </Card>
         <div style={{ fontSize: 11, color: 'var(--text-f)', textAlign: 'center', marginTop: 16 }}>Datos guardados en este dispositivo</div>
       </div>
-      <TabBar current="me" onGo={onGo}/>
     </div>
   );
 }

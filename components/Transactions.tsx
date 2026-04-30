@@ -5,7 +5,6 @@ import { useStore } from '@/lib/store';
 import { formatDate } from '@/lib/helpers';
 import type { Transaction } from '@/lib/types';
 import { HdrBtn, Card, TxRow } from './Shared';
-import { TabBar } from './TabBar';
 
 interface Props { onGo: (s: string) => void; onAdd: (k: string) => void; onOpenTx: (t: Transaction) => void; }
 
@@ -74,7 +73,6 @@ export function Transactions({ onGo, onAdd, onOpenTx }: Props) {
           );
         })}
       </div>
-      <TabBar current="tx" onGo={onGo}/>
     </div>
   );
 }
