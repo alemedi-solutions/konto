@@ -24,7 +24,7 @@ html { -webkit-text-size-adjust: 100%; background: var(--bg); }
 body { background: var(--bg); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; }
 #__next, main { height: 100%; }
 
-.screen { width: 100%; height: 100dvh; display: flex; flex-direction: column; background: var(--bg); overflow: clip; position: relative; padding-top: env(safe-area-inset-top); }
+.screen { width: 100%; height: calc(var(--vh, 1dvh) * 100); display: flex; flex-direction: column; background: var(--bg); overflow: clip; position: relative; padding-top: env(safe-area-inset-top); }
 button { cursor: pointer; font-family: 'Inter', sans-serif; border: none; outline: none; }
 input { font-family: 'Inter', sans-serif; outline: none; }
 *::-webkit-scrollbar { display: none; }
